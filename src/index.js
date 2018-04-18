@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import {App} from './containers/app';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import { App } from './containers/app'
 
-const app = document.createElement('div');
-document.body.appendChild(app);
+const app = document.createElement('div')
+document.body.appendChild(app)
 
 ReactDOM.render(
-	<div>
-	app <App />
-	</div>
-	, app);
+    <div>
+        <App />
+    </div>
+    , app)
 
-module.hot.accept();
+module.hot.accept()
