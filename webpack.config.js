@@ -1,6 +1,7 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 
 module.exports = {
     entry: [
@@ -42,7 +43,13 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin(),
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new HtmlWebpackIncludeAssetsPlugin({
+            assets: [{
+                path: 'https://api.backendless.com/sdk/js/latest/backendless.min.js',
+                type: 'js'
+            }],
+            append: false
+        }),
+        new webpack.NamedModulesPlugin()
     ]
 };
