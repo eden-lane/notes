@@ -1,5 +1,6 @@
 import {
-    FETCH_COLLECTIONS_REQUEST
+    FETCH_COLLECTIONS_REQUEST,
+    FETCH_COLLECTIONS_SUCCESS
 } from '../constants/action-types';
 import { List, Map } from 'immutable';
 
@@ -31,6 +32,8 @@ export default (state = defaultState, action) => {
     switch (action.type) {
         case FETCH_COLLECTIONS_REQUEST:
             return state.set('isFetching', true);
+        case FETCH_COLLECTIONS_SUCCESS:
+            return state.set('items', List(action.data))
         default:
             return state;
     }
