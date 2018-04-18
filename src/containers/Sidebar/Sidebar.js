@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import styles from './Sidebar.css';
 
@@ -11,9 +11,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({})
 
 const Sidebar = (props) => (
-    <Fragment>
+    <div className={styles.root}>
         <NotesTree items={props.items}/>
-    </Fragment>
+    </div>
 )
 
 export default connect(
