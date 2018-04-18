@@ -1,6 +1,6 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
     entry: [
@@ -23,7 +23,12 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     'style-loader',
-                    'css-loader'
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true
+                        }
+                    }
                 ]
             },
             {
