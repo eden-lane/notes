@@ -1,12 +1,22 @@
-import React, { Component } from 'react';
-import styles from './sidebar.css';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import styles from './Sidebar.css';
 
-export class Sidebar extends Component {
-    render() {
-        return (
-            <div className={styles.root}>
-                <b>Sidebar</b>
-            </div>
-        )
-    }
-}
+import {NotesTree} from '../../components/NotesTree/NotesTree';
+const mapStateToProps = state => ({
+    items: state.collections.get('items').toJS()
+})
+
+
+const mapDispatchToProps = dispatch => ({})
+
+const Sidebar = (props) => (
+    <Fragment>
+        <NotesTree items={props.items}/>
+    </Fragment>
+)
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Sidebar)
