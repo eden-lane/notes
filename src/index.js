@@ -7,9 +7,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { App } from './containers/app'
 import rootReducer from './reducers'
 import { fetchCollections } from './actions/collections'
+import { backendless, auth } from './config.js'
 
 const app = document.createElement('div')
 document.body.appendChild(app)
+
+Backendless.serverURL = backendless.serverURL;
+Backendless.initApp(backendless.APPLICATION_ID, backendless.API_KEY);
+
 
 const store = createStore(
     rootReducer,
