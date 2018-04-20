@@ -15,6 +15,8 @@ document.body.appendChild(app)
 Backendless.serverURL = backendless.serverURL;
 Backendless.initApp(backendless.APPLICATION_ID, backendless.API_KEY);
 
+let user = Backendless.UserService.loginSync(auth.login, auth.password)
+console.log(user);
 
 const store = createStore(
     rootReducer,

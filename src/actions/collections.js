@@ -18,7 +18,8 @@ function getData() {
 export function fetchCollections(userId, parentId) {
     return async (dispatch) => {
         dispatch(requestCollections(userId, parentId))
-        const data = await getData();
+        const data = await Backendless.Persistence.of('collections').find();
+        // { isOpen, isSelected}
         dispatch(receiveCollections(userId, parentId, data))
     }
 }

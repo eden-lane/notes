@@ -4,7 +4,9 @@ export class NotesTree extends Component {
     render() {
         return (
             <ul>
-                {this.props.items.map(item => <li key={item.id}>{item.title}</li>)}
+                {this.props.items.map(item => (
+                    <li key={item.objectId}>{item.title}</li>
+                ))}
             </ul>
         )
     }

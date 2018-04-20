@@ -21,12 +21,8 @@ const defaultState = Map({
     filter: '',
     sort: '',
     isFetching: false,
-    items: List([
-        {title: 'next', id: 1}
-    ])
+    items: List([])
 });
-
-window.x = defaultState;
 
 export default (state = defaultState, action) => {
     switch (action.type) {
