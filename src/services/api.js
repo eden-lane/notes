@@ -7,10 +7,9 @@ export const API = {
 
     collections: {
         get(parentId) {
-            const whereClause = parentId ? ` == '${parentId}'` : `is null`
-            const queryBuilder = Backendless.DataQueryBuilder.create()
+            const queryBuilder = Backendless.DataQueryBuilder.create();
             parentId
-                ? queryBuilder.setRelated('parentId')
+                ? queryBuilder.setWhereClause(`parentId = '${parentId}'`)
                 : queryBuilder.setWhereClause(`parentId is null`)
 
             return Backendless.Persistence.of('collections').find(queryBuilder)
