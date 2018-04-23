@@ -1,7 +1,7 @@
-export const backendles = {
+export const backendless = {
     APPLICATION_ID: '',
     API_KEY: '',
-    serverUrl: 'https://api.backendless.com',
+    serverURL: 'https://api.backendless.com',
 }
 
 export const auth = {

@@ -5,28 +5,33 @@ import {
 } from '../constants/action-types';
 import { API } from '../services/api';
 
-export function fetchCollections(userId, parentId) {
+export function fetchCollections(parentId) {
     return async (dispatch) => {
-        dispatch(requestCollections(userId, parentId))
+        dispatch(requestCollections(parentId))
         const data = await API.collections.get(parentId)
             // .map(item => ({
             //     isOpen: false,
             //     isSelected: false
             // }));
         // { isOpen, isSelected}
-        dispatch(receiveCollections(userId, parentId, data))
+        dispatch(receiveCollections(parentId, data))
     }
 }
 
-function requestCollections(userId, parentId) {
+function requestCollections(parentId) {
     return {
         type: FETCH_COLLECTIONS_REQUEST,
     }
 }
 
-function receiveCollections(userId, parentId, data) {
+function receiveCollections(parentId, data) {
     return {
         type: FETCH_COLLECTIONS_SUCCESS,
+        parentId,
         data
     }
+}
+
+export function openCollection(id) {
+    return async dispatch => dispatch(fetchCollections(id))
 }

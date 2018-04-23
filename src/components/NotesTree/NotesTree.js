@@ -6,15 +6,14 @@ export class NotesTree extends Component {
         const items = this.props.items || []
         return (
             <ul>
-                {items.map(item => (
-                    <li
+                {items.map(item => {
+                    return <li
                         key={item.objectId}
                         onClick={this.props.onClick}>
                         {item.title}
-
                         <NotesTree items={item.items} onClick={this.props.onClick}/>
                     </li>
-                ))}
+                })}
             </ul>
         )
     }
