@@ -15,6 +15,7 @@ export class NotesTree extends Component {
                             key={item.objectId}
                             id={item.objectId}
                             title={item.title}
+                            item={item}
                             onClick={onClick}>
                             {this.renderItems(item)}
                         </Node>
@@ -37,6 +38,7 @@ export class Node extends Component {
     static propTypes = {
         id: PropTypes.string,
         title: PropTypes.string,
+        item: PropTypes.object,
         type: PropTypes.string,
         onClick: PropTypes.func
     }
@@ -55,6 +57,7 @@ export class Node extends Component {
         const {
             id,
             title,
+            item,
             onClick,
             children
         } = this.props;
@@ -62,7 +65,7 @@ export class Node extends Component {
         return (
             <li
                 onClick={this.handleClick}>
-                { title }
+                { item.isSelected ? <b>{title}</b> : title }
                 { children }
             </li>
         )

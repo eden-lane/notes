@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styles from './Sidebar.css';
-import { openCollection } from '../../actions/collections';
+import { selectNode, openCollection } from '../../actions/collections';
 
 import { NotesTree } from '../../components/NotesTree/NotesTree';
-const mapStateToProps = state => ({
-    items: state.collections.get('items').toJS()
-})
+
+const mapStateToProps = state => {
+    return {items: state.collections.toJS()}
+}
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onClick: (id) => {
+        dispatch(selectNode(id))
         dispatch(openCollection(id))
     }
 })

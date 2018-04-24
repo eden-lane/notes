@@ -1,7 +1,8 @@
 import {
     FETCH_COLLECTIONS_REQUEST,
     FETCH_COLLECTIONS_SUCCESS,
-    FETCH_COLLECTIONS_FAILURE
+    FETCH_COLLECTIONS_FAILURE,
+    SELECT_NODE
 } from '../constants/action-types';
 import { API } from '../services/api';
 
@@ -29,6 +30,13 @@ function receiveCollections(parentId, data) {
         type: FETCH_COLLECTIONS_SUCCESS,
         parentId,
         data
+    }
+}
+
+export function selectNode(id) {
+    return {
+        type: SELECT_NODE,
+        id
     }
 }
 
