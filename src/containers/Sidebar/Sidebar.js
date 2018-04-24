@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styles from './Sidebar.css';
+import { openCollection } from '../../actions/collections';
 
 import { NotesTree } from '../../components/NotesTree/NotesTree';
 const mapStateToProps = state => ({
@@ -9,14 +10,17 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    // onClick: () =>
+    onClick: (id) => {
+        dispatch(openCollection(id))
+    }
 })
 
-const Sidebar = (props) => (
-    <div className={styles.root}>
-        <NotesTree items={props.items}/>
+const Sidebar = (props) => {
+
+    return <div className={styles.root}>
+        <NotesTree items={props.items} onClick={props.onClick}/>
     </div>
-)
+}
 
 export default connect(
     mapStateToProps,

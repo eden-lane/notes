@@ -34,7 +34,6 @@ export default (state = defaultState, action) => {
                 return state.set('items', List(action.data))
             } else {
                 const key = state.get('items').findKey(item => item.objectId == parentId)
-
                 return state.updateIn(['items', key], (list) => {
                     return {
                         ...list,

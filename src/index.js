@@ -29,7 +29,7 @@ const store = createStore(
 )
 
 store.dispatch(fetchCollections())
-store.dispatch(openCollection('D153CCC4-6474-E040-FFBF-435FAB964700'))
+// store.dispatch(openCollection('D153CCC4-6474-E040-FFBF-435FAB964700'))
 
 ReactDOM.render(
     <Provider store={store}>
