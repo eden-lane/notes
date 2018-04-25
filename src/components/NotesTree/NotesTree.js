@@ -9,7 +9,7 @@ export class NotesTree extends Component {
         } = this.props
         return (
             <ul>
-                {items.map(item => {
+                {items.map(({isSelected, isOpen, item}) => {
                     return (
                         <Node
                             key={item.objectId}
@@ -26,6 +26,7 @@ export class NotesTree extends Component {
     }
 
     renderItems(item) {
+        return null
         const items = item.items && item.items.toJS()
         if (items && items.length) {
             return <NotesTree items={item.items} onClick={this.props.onClick}/>

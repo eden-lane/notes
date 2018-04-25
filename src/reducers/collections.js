@@ -1,42 +1,30 @@
 import {
-    FETCH_COLLECTIONS_REQUEST,
-    FETCH_COLLECTIONS_SUCCESS,
+    FETCH_NODES_REQUEST,
+    FETCH_NODES_SUCCESS,
     SELECT_NODE
 } from '../constants/action-types';
 import { List, Map } from 'immutable';
 
-/**
-    collections: [
-        {isSelected: false, items: []}
-        {isSelected: true, items: [
-            {isSelected: false, items: []}
-        ]}
-
-    ]
- */
-
-const defaultState = List([])
+const defaultState = Map({
+    itemsById: Map({}),
+    allItems: List([])
+})
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-        case SELECT_NODE:
-            const newState = deselect(state)
-            return updateNode(newState, action.id, (item) => ({
-                ...item,
-                isSelected: true
-            }))
-        case FETCH_COLLECTIONS_SUCCESS:
-            const { parentId } = action
-            if (!parentId) {
-                return List(action.data)
-            } else {
-                return updateNode(state, parentId, (item) => {
-                    return {
-                        ...item,
-                        items: List(action.data)
+        case FETCH_NODES_SUCCESS:
+            const { data } = action
+            const newState = state.mergeDeep({
+                'itemsById': data.reduce((data, item) => {
+                    data[item.objectId] = {
+                        isSelected: false,
+                        item
                     }
-                })
-            }
+                    return data
+                }, {}),
+                allItems: data.map(item => item.objectId)
+            })
+            return newState
         default:
             return state;
     }

@@ -6,19 +6,22 @@ import { selectNode, openCollection } from '../../actions/collections';
 import { NotesTree } from '../../components/NotesTree/NotesTree';
 
 const mapStateToProps = state => {
-    return {items: state.collections.toJS()}
+    const { collections } = state
+    return {
+        items: collections.get('allItems').map(id => {
+            return collections.getIn(['itemsById', id])
+        }).toJS()
+    }
 }
-
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onClick: (id) => {
-        dispatch(selectNode(id))
-        dispatch(openCollection(id))
+        // dispatch(selectNode(id))
+        // dispatch(openCollection(id))
     }
 })
 
 const Sidebar = (props) => {
-
     return <div className={styles.root}>
         <NotesTree items={props.items} onClick={props.onClick}/>
     </div>

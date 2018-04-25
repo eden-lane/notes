@@ -7,7 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { App } from './containers/app'
 import { API } from './services/api.js';
 import rootReducer from './reducers'
-import { fetchCollections, openCollection } from './actions/collections'
+import { fetchNodes, openCollection } from './actions/collections'
 import { backendless, auth } from './config.js'
 
 API.init(backendless);
@@ -17,7 +17,6 @@ document.body.appendChild(app)
 
 
 let user = Backendless.UserService.loginSync(auth.login, auth.password)
-console.log(user);
 
 const store = createStore(
     rootReducer,
@@ -28,7 +27,7 @@ const store = createStore(
     )
 )
 
-store.dispatch(fetchCollections())
+store.dispatch(fetchNodes())
 // store.dispatch(openCollection('D153CCC4-6474-E040-FFBF-435FAB964700'))
 
 ReactDOM.render(

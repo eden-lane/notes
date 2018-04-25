@@ -1,33 +1,33 @@
 import {
-    FETCH_COLLECTIONS_REQUEST,
-    FETCH_COLLECTIONS_SUCCESS,
-    FETCH_COLLECTIONS_FAILURE,
+    FETCH_NODES_REQUEST,
+    FETCH_NODES_SUCCESS,
+    FETCH_NODES_FAILURE,
     SELECT_NODE
 } from '../constants/action-types';
 import { API } from '../services/api';
 
-export function fetchCollections(parentId) {
+export function fetchNodes(parentId) {
     return async (dispatch) => {
-        dispatch(requestCollections(parentId))
+        dispatch(requestNodes(parentId))
         const data = await API.collections.get(parentId)
             // .map(item => ({
             //     isOpen: false,
             //     isSelected: false
             // }));
         // { isOpen, isSelected}
-        dispatch(receiveCollections(parentId, data))
+        dispatch(receiveNodes(parentId, data))
     }
 }
 
-function requestCollections(parentId) {
+function requestNodes(parentId) {
     return {
-        type: FETCH_COLLECTIONS_REQUEST,
+        type: FETCH_NODES_REQUEST,
     }
 }
 
-function receiveCollections(parentId, data) {
+function receiveNodes(parentId, data) {
     return {
-        type: FETCH_COLLECTIONS_SUCCESS,
+        type: FETCH_NODES_SUCCESS,
         parentId,
         data
     }
@@ -41,5 +41,5 @@ export function selectNode(id) {
 }
 
 export function openCollection(id) {
-    return async dispatch => dispatch(fetchCollections(id))
+    return async dispatch => dispatch(fetchNodes(id))
 }
