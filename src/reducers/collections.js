@@ -13,16 +13,15 @@ const defaultState = Map({
 export default (state = defaultState, action) => {
     switch (action.type) {
         case FETCH_NODES_SUCCESS:
-            const { data } = action
+            const { data, parentId } = action
             const newState = state.mergeDeep({
                 'itemsById': data.reduce((data, item) => {
-                    data[item.objectId] = {
-                        isSelected: false,
-                        item
-                    }
+                    data[item.objectId] = item
                     return data
                 }, {}),
-                allItems: data.map(item => item.objectId)
+                allItems: parentId
+                    ? []
+                    : data.map(item => item.objectId)
             })
             return newState
         default:

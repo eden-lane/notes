@@ -7,6 +7,7 @@ export const API = {
 
     collections: {
         get(parentId) {
+            parentId = parentId == 'root' ? null : parentId
             const queryBuilder = Backendless.DataQueryBuilder.create();
             parentId
                 ? queryBuilder.setWhereClause(`parentId = '${parentId}'`)

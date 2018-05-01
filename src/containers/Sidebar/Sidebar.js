@@ -17,7 +17,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onClick: (id) => {
         // dispatch(selectNode(id))
-        // dispatch(openCollection(id))
+        dispatch(openCollection(id))
     }
 })
 

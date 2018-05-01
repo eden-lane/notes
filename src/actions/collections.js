@@ -10,11 +10,7 @@ export function fetchNodes(parentId) {
     return async (dispatch) => {
         dispatch(requestNodes(parentId))
         const data = await API.collections.get(parentId)
-            // .map(item => ({
-            //     isOpen: false,
-            //     isSelected: false
-            // }));
-        // { isOpen, isSelected}
+
         dispatch(receiveNodes(parentId, data))
     }
 }
